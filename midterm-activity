@@ -1,0 +1,76 @@
+The Algorithm Analysis Process
+
+EXAMPLE: Factorial Algorithm
+func factorial(n) {
+if (n == 1) {
+return 1
+} else {
+return n * factorial(n -1)
+}
+
+
+1. Decide on a parameter (or parameters) indicating an input’s size
+
+- The size of the input is the size of the data upon which the algorithm operates
+- For searching and sorting algorithms, the input size is usually the length of the array
+- For graphs, the input size is usually the number of nodes or edges 
+- For strings, the input size might be the length of the string
+
+EXAMPLE: The size of the input is n itself
+
+2. Identify the algorithm’s basic operation
+
+- Identify which operation is contributing the most to the total running time of the algorithm
+- The operation is generally located in the inner most loop
+- Basic operations could be an:
+    - Assignment
+    - A comparison between two variables
+    - An arithmetic operation between two variables
+    - When you need to choose between two, choose the one that does the burden of the work
+
+EXAMPLE: The basic operation is multiplication
+
+3. Check whether the number of times the basic operation is executed can vary on different inputs of same size (if it can, the worst-case, average case, and best-case efficiencies must be investigated separately)
+
+- Check to see if the data itself can change the runtime of the data
+- Does the data being sorted or unsorted change the runtime?
+- If there are multiple cases, calculate the next steps separately
+
+EXAMPLE: No, since the input size is n itself, there are no variations with same n and the efficiency is always the same.
+
+4. Set up recurrence relation (with appropriate initial condition), for the number of times the basic operation is executed
+
+- First figure out the initial condition, look for the simplest case in the problem
+- Then work through the problem set by step. A pattern should emerge for how you are manipulating the data each step
+
+EXAMPLE: T(n)=0 for n=0 and T(n)=T(n-1)+1 for n>0
+
+5. Solve the recurrence or, at least, ascertain the order of growth of its solution
+
+- Repeatedly substitute in the recurrence relation into the recursive call
+- Repeat this multiple times until a pattern emerges
+- Write the pattern using i as an indicator of change
+- Using the base case, solve for what value of i would make the base case true and would eliminate the recursive term
+- Substitute in the term for i and solve down
+- Verify your answer in two ways
+- Sub in the value of the base case and see if the result is true
+- Sub in the formula into the original recurrence relation and check if they are equal
+
+EXAMPLE: 
+M(n) =	M(n - 1) + 1
+Plug this term into the recurring term
+     = [M(n - 2) + 1] + 1
+     = M(n - 2) + 2
+Repeat by plugging M(n) = M(n - 1) + 1 into the recurring term again
+     = [M(n - 3) + 1] + 2
+     = M(n - 3) + 3
+The pattern: M(n) = M(n - i) + i
+M(n) = 1 for n = 0 when i = n
+Plug in n for i
+M(n) = M(n - n) + n = n
+Verify:
+1. M(0) = 0
+2. n = M(n - 1) + 1
+   n = n - 1 + 1
+   n = n
+
